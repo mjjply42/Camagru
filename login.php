@@ -1,6 +1,5 @@
 <?php
 
-
 ?>
 
 <!DOCTYPE html>
@@ -10,10 +9,10 @@
     <title>Camagru - Login</title>
   </head>
   <body>
-  <form>
-  Login<input type="login"><br>
-  Password<input type="pwd"><br><br>
-  <input type="submit" value="submit"><br><br>
+  <form action="check_login.php" method="POST" autocomplete="off">
+  Login<input type="login" name="login"><br>
+  Password<input type="pwd" name="pwd"><br><br>
+  <input type="submit" value="Submit" name="submit"><br><br>
   </form>
   <div class="home">Home</div>
   <script>

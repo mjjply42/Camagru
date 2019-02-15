@@ -25,8 +25,5 @@ Password <input type="paswd" name="password"><br><br>
   home.addEventListener('click', Home);
   function    Home()    { document.location.href = "index.php"; }
 </script>
-<?php
-$object = $conn;
-?>
   </body>
 </html>
