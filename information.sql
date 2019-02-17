@@ -9,3 +9,10 @@ CREATE TABLE users  (
     user_pwd VARCHAR(255) NOT NULL
 
 );
+
+//TESTING
+INSERT INTO `users`(`user_usrname`, `user_first`, `user_last`, `user_email`, `user_pwd`) 
+VALUES ('mjjply12', 'Matthew','Jones','mjjply2@gmail.com','chuckles12345')
+
+INSERT INTO `users`(`user_usrname`, `user_first`, `user_last`, `user_email`, `user_pwd`) 
+VALUES ('Dio','Jabba','Hutt','ufhkfuh@gmail.com','happy1234')

@@ -1,5 +1,5 @@
 <?php
-  
+
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
     <title>Camagru-Sign-Up</title>
   </head>
   <body>
-  <form class="signup-form" action="dbsign_up.php" method="POST">
+  <form class="signup-form" action="check_new_user.php" method="POST" autocomplete="off">
 <h1>Welcome New User!</h1><br><br>
 Username <input type="text" name="username"><br>
 First Name <input type="text" name="first"><br>

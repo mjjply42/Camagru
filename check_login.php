@@ -2,7 +2,7 @@
 $DB_HOST = "localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "root";
-$DB_NAME = "totally";
+$DB_NAME = "camagru";
 $DB_CHARSET = "utf8mb4";
 $DB_PORT = 8889;
 $DB_DSN = "mysql:dbname=$DB_NAME;host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
@@ -17,6 +17,7 @@ catch   (PDOException $event) {
 if ((!empty($_POST['login'])) && (!empty($_POST['pwd'])))
 {
     $username = $_POST['login'];
+    #ADD HASHED VALUE
     $password = $_POST['pwd'];
     
     $test = $conn->prepare("SELECT user_usrname, user_pwd FROM users");
