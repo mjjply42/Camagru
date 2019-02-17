@@ -1,5 +1,5 @@
 <?php
-  include_once 'usr_db.php';
+  
 ?>
 
 <!DOCTYPE html>

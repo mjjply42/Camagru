@@ -2,7 +2,7 @@
 
 if (isset($_POST['submit'])) 
 {
-    include_once 'usr_db.php';
+    include_once 'setup.php';
 
     $user_name = $_POST['username'];
     $first = $_POST['first'];
