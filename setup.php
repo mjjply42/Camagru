@@ -12,7 +12,8 @@ try {
                     user_first VARCHAR(255) NOT NULL,
                     user_last VARCHAR(255) NOT NULL,
                     user_email VARCHAR(255) NOT NULL,
-                    user_pwd VARCHAR(255) NOT NULL
+                    user_pwd VARCHAR(255) NOT NULL,
+                    e_verify VARCHAR(255) NOT NULL
     
                                     );"
                 );

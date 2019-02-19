@@ -32,6 +32,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
     $email = $_POST['email'];
     #ADD HASHED VALUE
     $password = $_POST['password'];
+    $e_verify = uniqid($email, true);
     $ifNew = false;
 
     $validity = $conn->prepare("SELECT user_usrname, user_email FROM users");
@@ -40,7 +41,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
     {
       foreach($result as $row)
       { 
-        if ($row['user_usrname'] == $username && $row['user_email'] == $email)
+        if ($row['user_usrname'] == $username || $row['user_email'] == $email)
         {
             ##Switch these two lines out with an AJAX Call 
             ##that shows beside form. That will be a flashy step.
@@ -68,12 +69,17 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
         }
         $new_usr = $conn->prepare("INSERT INTO users
                                     (user_usrname, user_first, 
-                                    user_last, user_email, user_pwd)
+                                    user_last, user_email, user_pwd, e_verify)
                                 VALUES ('$username', '$first_n',
-                                        '$last_n', '$email', '$password')");
-        $new_usr->execute(); 
-        print_r($res);
-        header("Location: usr_profile.php");
+                                        '$last_n', '$email', '$password', '$e_verify')");
+        $new_usr->execute();
+        session_start();
+        $_SESSION['prevent'] = 'true';
+        $_SESSION['verify'] = $e_verify;
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        session_write_close();
+        header("Location: check_email.php?username=$username&email=$email&verify=$e_verify");
     }
 }
 else

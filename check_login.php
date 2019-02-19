@@ -27,7 +27,12 @@ if ((!empty($_POST['login'])) && (!empty($_POST['pwd'])))
       foreach($result as $row)
       {
         if ($row['user_usrname'] == $username && $row['user_pwd'] == $password)
-          header("Location: usr_profile.php");
+        {
+            session_start();
+            $_SESSION['username'] = $username;
+            session_write_close();
+            header("Location: usr_session.php");
+        }
       }
     }
     ##Switch these two lines out with an AJAX Call 
