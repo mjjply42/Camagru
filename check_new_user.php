@@ -30,8 +30,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
     $first_n = $_POST['first'];
     $last_n = $_POST['last'];
     $email = $_POST['email'];
-    #ADD HASHED VALUE
-    $password = $_POST['password'];
+    $password = hash('sha3-512',$_POST['password']);
     $e_verify = uniqid($email, true);
     $ifNew = false;
 
@@ -78,6 +77,8 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
         $_SESSION['verify'] = $e_verify;
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
+        setcookie('username', $username, time()+3600);
+        setcookie('email', $email, time()+3600);
         session_write_close();
         header("Location: check_email.php?username=$username&email=$email&verify=$e_verify");
     }

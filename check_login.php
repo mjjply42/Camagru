@@ -17,8 +17,7 @@ catch   (PDOException $event) {
 if ((!empty($_POST['login'])) && (!empty($_POST['pwd'])))
 {
     $username = $_POST['login'];
-    #ADD HASHED VALUE
-    $password = $_POST['pwd'];
+    $password = hash('sha3-512',$_POST['pwd']);
     
     $test = $conn->prepare("SELECT user_usrname, user_pwd FROM users");
     $test->execute();

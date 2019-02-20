@@ -3,8 +3,8 @@
 session_start();
 if(!empty($_POST['old_pass']) && !empty($_POST['new_pass']))
 {
-    $old_pass = $_POST['old_pass'];
-    $new_pass = $_POST['new_pass'];
+    $old_pass = hash('sha3-512',$_POST['old_pass']);
+    $new_pass = hash('sha3-512',$_POST['new_pass']);
     echo($old_pass);
     echo($new_pass);
     $DB_HOST = "localhost";

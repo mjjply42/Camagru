@@ -15,33 +15,27 @@ else
     <meta charset="UTF-8">
     <title>Camagru - Check Email</title>
   </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <body>
-  <h1>A verification link will be emailed to you shortly</h1>
+  <h1>Click button below to send verification link</h1>
   <p>The link will epxire in exactly one day</p>
-  <?php
-  $email = $_GET['email'];
-  $username = $_GET['username'];
-  $to      = $email;
-  $e_verify = $_GET['verify'];
-  $subject = 'Signup | Verification';
-  $headers  = 'MIME-Version: 1.0' . "\r\n";
-  $headers .= 'Content-type: text/plain; charset=UTF-8' . "\r\n";
-  $message = '
-   
-  Thanks for signing up!
-  Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-   
-  ------------------------
-  Username: '.$name.'
-  Email: '.$email.'
-  ------------------------
-   
-  Please click this link to activate your account:
-  http://localhost:8100/new_usr_session.php?email='.$email.'&verify='.$e_verify.'';
-                       
-  mail($to, $subject, $message, $headers);
-  
+  <button class="resend">Send Link</button>
+  <script>
+  $(document).ready(function() {
+    $(".resend").click(function() {
+      $.ajax({
+        type: "Post",
+        url: "send_email.php",
+        data: "send='yes'",
+        success: function() {
+          alert("Email Has Been Sent");
+        }
+      });
+    });
 
-  ?>
+  });
+  
+  
+  </script>
   </body>
 </html>
