@@ -3,7 +3,7 @@
 include_once 'database.php';
 
 try {
-    $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+    $conn = new PDO($DB_SET_DSN, $DB_USER, $DB_PASSWORD);
     $conn->exec("CREATE DATABASE $DB_NAME;
                 USE $DB_NAME;
                 CREATE TABLE users  (

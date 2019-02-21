@@ -1,5 +1,12 @@
 <?php
-include_once 'database.php';
+$DB_HOST = "localhost";
+$DB_USER = "root";
+$DB_PASSWORD = "root";
+$DB_NAME = "camagru";
+$DB_CHARSET = "utf8mb4";
+$DB_PORT = 8889;
+$DB_SET_DSN = "mysql:host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
+$DB_DSN = "mysql:dbname=$DB_NAME;host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
 #******* $("#prospects_form").submit(function(e) {
 #********* e.preventDefault();
 #});
@@ -9,14 +16,6 @@ include_once 'database.php';
 #New Users cannot have same:
 #user_usrname
 #same user_email
-$DB_HOST = "localhost";
-$DB_USER = "root";
-$DB_PASSWORD = "root";
-$DB_NAME = "camagru";
-$DB_CHARSET = "utf8mb4";
-$DB_PORT = 8889;
-$DB_DSN = "mysql:dbname=$DB_NAME;host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
-
 try {
     $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 }
@@ -36,22 +35,31 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
 
     $validity = $conn->prepare("SELECT user_usrname, user_email FROM users");
     $validity->execute();
-    while ($result = $validity->fetchAll())
+    if ($result = $validity->fetchAll())
     {
-      foreach($result as $row)
-      { 
-        if ($row['user_usrname'] == $username || $row['user_email'] == $email)
+        while($result = $validity->fetchAll())
         {
-            ##Switch these two lines out with an AJAX Call 
-            ##that shows beside form. That will be a flashy step.
-            echo("User Already Exists. Redirecting");
-            header("Refresh: 1; sign_up.php");
-            $ifNew = false;
-            break;
+            foreach($result as $row)
+            { 
+                if ($row['user_usrname'] == $username || $row['user_email'] == $email)
+                {
+                    ##Switch these two lines out with an AJAX Call 
+                    ##that shows beside form. That will be a flashy step.
+                    echo("User Already Exists. Redirecting");
+                    header("Refresh: 1; sign_up.php");
+                    $ifNew = false;
+                    break;
+                }
+                else
+                {
+                    $ifNew = true;
+                }
+            }
         }
-        else
-            $ifNew = true;
-      }
+    }
+    else
+    {
+        $ifNew = true;
     }
     $conn = NULL;
     if ($ifNew == true)
@@ -66,7 +74,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
             print "Error!: " . $e->getMessage(). "<br/>";
             die();
         }
-        $new_usr = $conn->prepare("INSERT INTO users
+        $new_usr = $conn->prepare("INSERT INTO temp_users
                                     (user_usrname, user_first, 
                                     user_last, user_email, user_pwd, e_verify)
                                 VALUES ('$username', '$first_n',
@@ -79,6 +87,8 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
         $_SESSION['email'] = $email;
         setcookie('username', $username, time()+3600);
         setcookie('email', $email, time()+3600);
+        setcookie('verify', $e_verify, time()+3600);
+        setcookie('pwd', $password, time()+3600, '/secure/');
         session_write_close();
         header("Location: check_email.php?username=$username&email=$email&verify=$e_verify");
     }
