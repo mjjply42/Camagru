@@ -9,6 +9,7 @@ $DB_SET_DSN = "mysql:host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
 $DB_DSN = "mysql:dbname=$DB_NAME;host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
 session_start();
 $_SESSION['logged'] = true;
+$_COOKIE['username'] = $username;
 $get_verify = $_GET['verify'];
 if($get_verify == $_SESSION['verify'])
 {

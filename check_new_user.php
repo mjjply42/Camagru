@@ -88,7 +88,6 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
         setcookie('username', $username, time()+3600);
         setcookie('email', $email, time()+3600);
         setcookie('verify', $e_verify, time()+3600);
-        setcookie('pwd', $password, time()+3600, '/secure/');
         session_write_close();
         header("Location: check_email.php?username=$username&email=$email&verify=$e_verify");
     }

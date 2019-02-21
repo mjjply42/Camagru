@@ -24,7 +24,7 @@ if ((!empty($_POST['login'])) && (!empty($_POST['pwd'])))
             session_start();
             $_SESSION['username'] = $username;
             session_write_close();
-            header("Location: usr_session.php");
+            header("Location: usr_session.php?username='$username'");
         }
       }
     }

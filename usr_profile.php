@@ -44,6 +44,7 @@ if ($_SESSION['logged'] == false)
       <input class="logout" type="submit" value="Logout" name="logout"></input>
       </form>
       <button class="settings">Settings</button>
+      <button class="test">test</button>
       <div class="home">Home</div>
       <script>
 
