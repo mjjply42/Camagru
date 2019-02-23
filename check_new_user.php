@@ -1,4 +1,5 @@
 <?php
+include_once 'table_create.php';
 $DB_HOST = "localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "root";
@@ -32,6 +33,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
     $password = hash('sha3-512',$_POST['password']);
     $e_verify = uniqid($email, true);
     $ifNew = false;
+    $count = 0;
 
     $validity = $conn->prepare("SELECT user_usrname, user_email FROM users");
     $validity->execute();
@@ -39,6 +41,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
     {
         while($result = $validity->fetchAll())
         {
+            $count++;
             foreach($result as $row)
             { 
                 if ($row['user_usrname'] == $username || $row['user_email'] == $email)

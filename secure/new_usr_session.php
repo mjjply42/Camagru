@@ -1,4 +1,5 @@
 <?php
+include_once 'table_create.php';
 $DB_HOST = "localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "root";
@@ -42,7 +43,7 @@ if($get_verify == $_SESSION['verify'])
         $del_table = $conn->prepare("DELETE FROM temp_users
                                         WHERE e_verify = '$get_verify'");
         $del_table->execute();
-
+        profileTable();
      header("Location: ../usr_profile.php");
 }
 else

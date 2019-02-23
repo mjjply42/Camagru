@@ -1,0 +1,21 @@
+.form            {
+    background-color: orange;
+    float: left;
+    height: 300px;
+    width:  300px;
+}
+
+.gallery       {
+    background-color: blue;
+    height: 700px;
+    width: 700px;
+    float: right;
+}
+.home           {
+    display: inline;
+}
+
+img             {
+    height: 400px;
+    width: 400px;
+}
