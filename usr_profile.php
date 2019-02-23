@@ -50,6 +50,10 @@ if (!$result = $gal_check->fetchAll())
                             VALUES (00, 'null', 00, 'false')");
   $insert->execute();
 }
+if (!file_exists("pics_" .$_SESSION['username'].""))
+{
+  mkdir("pics_".$_SESSION['username']."");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,14 +96,19 @@ if (!$result = $gal_check->fetchAll())
           {
             type: "Get",
             url: "test.php",
-            data: "",
+            data: " ",
             success: function(data) 
             {
-              var dater = data;
-              var add = document.createElement("img");
-              var gallery = document.querySelector(".gallery");
-              gallery.appendChild(add);
-              add.src = dater;
+              while (data)
+              {
+                foreach (data as value)
+                {
+                  var add = document.createElement("img");
+                  var gallery = document.querySelector(".gallery");
+                  gallery.appendChild(add);
+                  add.src = value;
+                }
+              }
               
             }
           });

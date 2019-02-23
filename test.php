@@ -1,5 +1,6 @@
 <?php
 
-echo(hash("sha3-512",'mjjply12'));
+$images = array("no_imges.png","dog.png");
+print_r($images);
 
 ?>

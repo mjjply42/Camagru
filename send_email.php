@@ -17,7 +17,7 @@
     ------------------------
     
     Please click this link to activate your account:
-    http://localhost:8100/new_usr_session.php?email='.$email.'&verify='.$e_verify.'';
+    http://localhost:8888/new_usr_session.php?email='.$email.'&verify='.$e_verify.'';
     
     mail($to, $subject, $message, $headers);
 ?>

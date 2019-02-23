@@ -1,5 +1,4 @@
 <?php
-include_once 'table_create.php';
 $DB_HOST = "localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "root";
