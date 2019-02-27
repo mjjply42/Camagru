@@ -1,6 +1,26 @@
 <?php
+###THIS STATEMENT RIPS AND COPIES THE IMAGE_ID
+#INSERT INTO id_img_stat (`img_id`)
+##SELECT `image_id`
+##FROM profile_info
+##WHERE pic_ = '$fileName'");
+session_start();
 
-$images = array("no_imges.png","dog.png");
-print_r($images);
+header("Content-type: image/png");
+$img = imagecreatefrompng("dog.png");
+$alph = imagecreatefrompng("cat2.png");
+$she = imagesy($alph);
+$swi = imagesx($alph);
+$dhe = 200;
+$dwi = 200;
+$dest = imagecreatetruecolor($swi, $she);
+imagecopyresampled($dest, $alph, 0, 0, 0, 0, $dhe, $dwi, $she, $swi);
+// use imagecopymerge instead and set the copied image opacity to 50
+imagecopy($img, $dest, 0, 0, 0, 0, 200, 200); 
+imagepng($img);
+imagedestroy($img);
+imagepng($dest ,100);
+imagedestroy($dest);
+
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 include_once 'database.php';
 session_start();
-echo($_FILES['myfile']['name']);
 
 try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
 
@@ -26,29 +25,10 @@ if (isset($_POST['logout']))
 }
 if ($_SESSION['logged'] == false)
   header('Location:  login.php');
-$conn = null;
-try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
 
-catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"; 
-  die(); }
-
-$gal_check = $conn->prepare("SELECT table_id
-                            FROM  id_img_stat");
-$gal_check->execute();
-if (!$result = $gal_check->fetchAll())
+if (!file_exists("pics_alpha_" .$_SESSION['username'].""))
 {
-  $conn = null;
-  try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
-
-  catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"; 
-    die(); }
-  $insert = $conn->prepare("INSERT INTO profile_info
-                                      (`user_id`, `image_id`, `pic_`, `create_date`, `status`)
-                            VALUES ($id, 00,'no_images.png',DATE(NOW()),'private' );
-                            INSERT INTO id_img_stat 
-                                      (img_id, comment, commenter, like_)
-                            VALUES (00, 'null', 00, 'false')");
-  $insert->execute();
+  mkdir("pics_alpha_".$_SESSION['username']."");
 }
 if (!file_exists("pics_" .$_SESSION['username'].""))
 {
@@ -71,16 +51,18 @@ if (!file_exists("pics_" .$_SESSION['username'].""))
       </form>
       <button class="settings">Settings</button>
       <button class="test">test</button>
-      <form id="uploadbanner" enctype="multipart/form-data" method="post" action="usr_profile.php">
+      <form id="uploadbanner" enctype="multipart/form-data" method="post" action="file_stick_Upload.php">
       <input id="fileupload" name="myfile" type="file" />
       <input type="submit" value="submit" id="submit" />
       </form>
       </div>
       <br><div class="home">Home</div>
+      <button class="toggle" onclick="myFunction()">View Gallery</button>
       <div class="gallery">
       </div>
       <script>
-
+      var x = document.querySelector(".gallery");
+      x.style.display = "none";
       var settings = document.querySelector(".settings");
       var home = document.querySelector(".home");
       home.addEventListener('click', Home);
@@ -95,25 +77,35 @@ if (!file_exists("pics_" .$_SESSION['username'].""))
           $.ajax(
           {
             type: "Get",
-            url: "test.php",
-            data: " ",
+            url: "gallery_load.php",
+            dataType: "JSON",
             success: function(data) 
             {
-              while (data)
+              data.forEach(function(img)
               {
-                foreach (data as value)
-                {
-                  var add = document.createElement("img");
-                  var gallery = document.querySelector(".gallery");
-                  gallery.appendChild(add);
-                  add.src = value;
-                }
-              }
-              
+                var add = document.createElement("img");
+                var gallery = document.querySelector(".gallery");
+                gallery.appendChild(add);
+                add.src = (img);
+              });
             }
           });
       });
-  
+      function myFunction() 
+      {
+        var x = document.querySelector(".gallery");
+        var y = document.querySelector(".toggle")
+        if (x.style.display === "none") 
+        {
+          y.innerText = "Hide Gallery";
+          x.style.display = "block";
+        }
+        else 
+        {
+          y.innerText = "View Gallery";
+          x.style.display = "none";
+        }
+      }
   
       </script>
   </body>
