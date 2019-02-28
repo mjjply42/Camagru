@@ -31,6 +31,12 @@ try {
                     create_date DATE NOT NULL,
                     pic_ VARCHAR(255) NOT NULL,
                     status VARCHAR(255) NOT NULL);
+
+                CREATE TABLE usr_info       (
+                    user_id INT NOT NULL,
+                    profile_pic VARCHAR(255) NOT NULL,
+                    pp_num INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+                );
                     
                 CREATE TABLE id_img_stat    (
                     table_id INT AUTO_INCREMENT PRIMARY KEY,

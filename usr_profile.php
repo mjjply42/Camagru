@@ -26,25 +26,36 @@ if (isset($_POST['logout']))
 if ($_SESSION['logged'] == false)
   header('Location:  login.php');
 
-if (!file_exists("pics_alpha_" .$_SESSION['username'].""))
-{
-  mkdir("pics_alpha_".$_SESSION['username']."");
-}
-if (!file_exists("pics_" .$_SESSION['username'].""))
+if (!file_exists("pics_".$_SESSION['username'].""))
 {
   mkdir("pics_".$_SESSION['username']."");
 }
+if (!file_exists("pics_".$_SESSION['username']."/pics_alpha_" .$_SESSION['username'].""))
+{
+  mkdir("pics_".$_SESSION['username']."/pics_alpha_".$_SESSION['username']."");
+}
+if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
+{
+  mkdir("pics_".$_SESSION['username']."/profile_img");
+}
+
 ?>
 <!DOCTYPE html>
 <html>
   <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="user_profile.css">
     <meta charset="UTF-8">
     <title>Camagru - Profile</title>
   </head>
   <body>
-      <h1>User Profile</h1>
+      <h1><?php echo($_SESSION['username']);?>'s Profile</h1>
+      <div class="avatar">
+      </div>
+      <form id="uploadbanner" enctype="multipart/form-data" method="post" action="file_prof_Upload.php">
+      <input id="fileupload" name="myfile" type="file" value="Upload Avatar" />
+      <input type="submit" value="submit" id="submit" />
+      </form>
       <div class="form">
       <form method="POST" action="usr_profile.php">
       <input class="logout" type="submit" value="Logout" name="logout"></input>
@@ -55,9 +66,13 @@ if (!file_exists("pics_" .$_SESSION['username'].""))
       <input id="fileupload" name="myfile" type="file" />
       <input type="submit" value="submit" id="submit" />
       </form>
+      <form action="usr_user_search.php" method="POST" autocomplete="off">
+        <input type="text" placeholder="Search for User..." class="search_bar" name="search">
+        <input type="submit" value="Search" class="search_but">
+      </form>
       </div>
       <br><div class="home">Home</div>
-      <button class="toggle" onclick="myFunction()">View Gallery</button>
+      <button class="toggle" onclick="myFunction();">View Gallery</button>
       <div class="gallery">
       </div>
       <script>
@@ -88,6 +103,20 @@ if (!file_exists("pics_" .$_SESSION['username'].""))
                 gallery.appendChild(add);
                 add.src = (img);
               });
+            }
+          });
+
+          $.ajax(
+          {
+            type: "Get",
+            url: "avatar_load.php",
+            dataType: 'text',
+            success: function(data) 
+            {
+                var new_ = document.createElement("img");
+                var avatar = document.querySelector(".avatar");
+                avatar.appendChild(new_);
+                new_.src = (data);
             }
           });
       });

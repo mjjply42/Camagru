@@ -15,9 +15,10 @@ if ($fileSize >= 32000000){
     echo("File size is too large for upload");
     exit();
 }
-if (!file_exists("pics_alpha".$_SESSION['username']."/$fileName"))
+if (!file_exists("pics_" .$_SESSION['username']. "/pics_alpha_" .$_SESSION['username']."/$fileName"))
 {
-    move_uploaded_file($_FILES['myfile']['tmp_name'], "pics_alpha".$_SESSION['username']."/$fileName");
+    echo("HERE");
+    move_uploaded_file($_FILES['myfile']['tmp_name'], "pics_" .$_SESSION['username']. "/pics_alpha_" .$_SESSION['username']."/$fileName");
     $DB_HOST = "localhost";
     $DB_USER = "root";
     $DB_PASSWORD = "root";

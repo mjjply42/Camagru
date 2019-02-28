@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 $id = intval($_SESSION['id']);
 $DB_HOST = "localhost";
@@ -18,25 +19,18 @@ catch   (PDOException $event) {
     die();
 }
 
-$test = $conn->prepare("SELECT pic_, image_id, status FROM profile_info WHERE `user_id` = '$id'");
+$test = $conn->prepare("SELECT profile_pic, `user_id` 
+                        FROM usr_info
+                        WHERE `user_id` = '$id'");
 $test->execute();
-
-$images = array();
 while($result = $test->fetchAll())
 {
-    foreach ($result as $row)
-    {
-        if ($row['status'] != "private")
-        {
-            $var = $row['pic_'];
-            array_push($images, $var);
-        }
-    }
-    echo(json_encode($images));
+    $image = $result[0]['profile_pic'];
+    echo($image);
     exit();
 }
-$images = array("no_images.png");
-echo(json_encode($images));
+$image = "blank_profile.png";
+echo($image);
 
 
 
