@@ -20,11 +20,10 @@
 }
 
 .modal-content img{
-    height: 50%;
-    width: 50%;
-    margin-top: 30%;
-
-    float: left;
+    height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .close {
@@ -41,19 +40,47 @@
     cursor: pointer;
 }
 
-
-.com_con    {
-    float: right;    
-}
-
 .comments   {
-    width: 45%;
-    height: 500px;
+    width: 100%;
+    height: 200px;
     background-color: #eff2f7;
     overflow-y: auto;
     overflow-y: scroll;
+    word-wrap: break-word;
+}
+
+
+.new_div_com    {
+    border: 1px solid #d4d7db;
+}
+
+.img_con        {
+    border: 1px solid #d4d7db;
+    width: 100%;
+    height: 300px;
+}
+
+p1              {
+    margin-left: 45%;
+    font-size: 80%;
+}
+
+.like:hover,
+.like:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.like-con       {
+    width: 8%;
+    margin-left: 45%;
+}
+
+.likes     {
+    margin-left: 15px;
 }
 
 .like       {
-    float: right;
+    font-size: 30%;
 }

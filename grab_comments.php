@@ -1,6 +1,5 @@
 <?php
-session_start();
-$id = intval($_SESSION['id']);
+$im_id = $_POST['image_id'];
 $DB_HOST = "localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "root";
@@ -18,23 +17,20 @@ catch   (PDOException $event) {
     die();
 }
 
-$test = $conn->prepare("SELECT pic_, image_id, status FROM profile_info WHERE `user_id` = '$id'");
+$test = $conn->prepare("SELECT img_id, comment FROM id_img_stat WHERE `img_id` = $im_id");
 $test->execute();
 
-$images = array();
+$comments = array();
 while($result = $test->fetchAll())
 {
     foreach ($result as $row)
     {
-        if ($row['status'] != "private")
-        {
-            $var = $row['pic_'];
-            array_push($images, $var);
-        }
+        $com = $row['comment'];
+        array_push($comments, $com);
     }
-    echo(json_encode($images));
+    echo(json_encode($comments));
     exit();
 }
-$images = array("no_images.png");
-echo(json_encode($images));
+$comments = array("No Comments");
+echo(json_encode($comments));
 ?>
