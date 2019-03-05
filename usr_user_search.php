@@ -27,7 +27,7 @@ while($result = $grab->fetchAll())
     $id = $row['user_id'];
     if ($profile == $query)
     {
-      header("Location: search.php?user=".$profile."&id=".$id."");
+      header("Location: search.php?user_search=".$profile."&id=".$id."");
     }
     else
     {

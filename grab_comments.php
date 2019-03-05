@@ -31,6 +31,4 @@ while($result = $test->fetchAll())
     echo(json_encode($comments));
     exit();
 }
-$comments = array("No Comments");
-echo(json_encode($comments));
 ?>

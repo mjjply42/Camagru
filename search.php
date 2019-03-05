@@ -1,6 +1,6 @@
 <?php
 session_start();
-$user = $_GET['user'];
+$user = $_GET['user_search'];
 $id = intval($_SESSION['id']);
 
 $DB_HOST = "localhost";
@@ -62,18 +62,27 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
             <div class="like-con">
                 <span class="like" onclick="sendLike();" style="font-size:500%;color: grey;">&hearts;</span>
             <p1 class="likes"><?php 
-            //$conn = null;
-            //try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
-            //catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
-            //    die();
-            //}
+            $conn = null;
+            try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
+            catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
+                die();
+            }
 
-            //$grab = $conn->prepare("SELECT like_")
-            
+            $grab = $conn->prepare("SELECT like_, img_id, commenter FROM id_img_stat");
+            $grab->execute();
+            $count = 0;
+            while($result = $grab->fetchAll())
+            {
+                foreach($result as $row)
+                {
+                    if($row['like_'] == 1)
+                        $count++;
+                }
+            }
+            echo($count);
             ?></p1>
             </div>
             <div class="comments">
-            <p>Here is a comment</p>
             </div>
             <br>
             <form class="post_comment" method="POST" autocomplete="off">
@@ -98,7 +107,22 @@ function        sendLike()
         success: function(data) 
         {
             var heart = document.querySelector(".like");
-            heart.style.color = 'red';
+            var count = document.querySelector(".likes").textContent;
+            if (data == 1)
+            {
+                heart.style.color = 'red';
+                count = parseInt(count);
+                count++;
+                document.querySelector(".likes").textContent = count;
+            }
+            else
+            {
+                heart.style.color = 'grey';
+                count = parseInt(count);
+                count--;
+                document.querySelector(".likes").textContent = count;
+
+            }
         }
     });
 }
@@ -120,7 +144,7 @@ function modalFunc(event) {
     {
         type: "Post",
         url: "grab_comments.php",
-        data: {'image_id': im_id},
+        data: {'image_id': mod_im.id},
         dataType: "JSON",
         success: function(data) 
         {
@@ -141,19 +165,23 @@ function modalFunc(event) {
 }
 
 span.onclick = function() {
-    var comments = document.querySelector(".comments");
-        while(comments.childElementCount >= 2)
-            comments.removeChild(document.querySelector(".new_div_com"));
+    var input = document.querySelector(".com_con");
+    input.value = '';
     modal.style.display = "none";
+    var comments = document.querySelector(".comments");
+        while(comments.childElementCount >= 1)
+            comments.removeChild(document.querySelector(".new_div_com"));
 }
 
 window.onclick = function(event) {
     if (event.target == modal) {
         var comments = document.querySelector(".comments");
-        while(comments.childElementCount >= 2)
+        while(comments.childElementCount >= 1)
             comments.removeChild(document.querySelector(".new_div_com"));
         modal.style.display = "none";
     }
+    var input = document.querySelector(".com_con");
+    input.value = '';
 }
 
 function post_com(event) 
