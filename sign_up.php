@@ -15,7 +15,7 @@ Username <input type="text" name="username"><br>
 First Name <input type="text" name="first"><br>
 Last Name <input type="text" name="last"><br>
 Email <input type="text" name="email"><br>
-Password <input type="paswd" name="password"><br><br>
+Password <input type="password" name="password"><br><br>
 <input type="submit" value="submit" name="submit"><br><br>
 
 </form>

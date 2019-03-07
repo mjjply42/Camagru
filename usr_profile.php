@@ -143,9 +143,16 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
               data.forEach(function(img)
               {
                 var add = document.createElement("img");
+                var input = document.createElement("input");
+                input.type = "radio";
+                input.name = img;
+                input.value = img;
                 var sticker = document.querySelector(".stickers_");
+                sticker.appendChild(input);
                 sticker.appendChild(add);
-                add.src = ("pics_"+ user+ "/" + "pics_alpha_" + user + "/" + img);;
+                sticker.appendChild(document.createElement("br"));
+                add.src = ("pics_"+ user+ "/" + "pics_alpha_" + user + "/" + img);
+
               });
             }
           });
