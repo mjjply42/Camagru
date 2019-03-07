@@ -49,10 +49,11 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
     <title>Camagru - Profile</title>
   </head>
   <body>
-      <h1><?php echo($_SESSION['username']);?>'s Profile</h1>
+      <h1 class="user"><?php echo($_SESSION['username']);?>'s Profile</h1>
       <div class="avatar">
       </div>
       <form id="uploadbanner" enctype="multipart/form-data" method="post" action="file_prof_Upload.php">
+      <br>Profile Picture
       <input id="fileupload" name="myfile" type="file" value="Upload Avatar" />
       <input type="submit" value="submit" id="submit" />
       </form>
@@ -63,7 +64,13 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       <button class="settings">Settings</button>
       <button class="test">test</button>
       <form id="uploadbanner" enctype="multipart/form-data" method="post" action="file_stick_Upload.php">
+      <br>Upload Sticker
       <input id="fileupload" name="myfile" type="file" />
+      <input type="submit" value="submit" id="submit" />
+      </form>
+      <form id="uploadbanner" enctype="multipart/form-data" method="post" action="file_gall_Upload.php">
+      <br>Upload Gallery Photo
+      <input id="fileupload" name="myfile" type="file" value="Upload Gallery" />
       <input type="submit" value="submit" id="submit" />
       </form>
       <form action="usr_user_search.php" method="POST" autocomplete="off">
@@ -75,7 +82,12 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       <button class="toggle" onclick="myFunction();">View Gallery</button>
       <div class="gallery">
       </div>
+      <div class="stickers_">
+      <!-- <button type="button" onclick="alert('Hello World!')"><img src="cat2.png"></button>-->
+      </div>
       <script>
+      var user = document.querySelector(".user").innerText;
+      user = user.slice(0, -10);
       var x = document.querySelector(".gallery");
       x.style.display = "none";
       var settings = document.querySelector(".settings");
@@ -101,7 +113,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
                 var add = document.createElement("img");
                 var gallery = document.querySelector(".gallery");
                 gallery.appendChild(add);
-                add.src = (img);
+                add.src = ("pics_"+ user+ "/" + img);
               });
             }
           });
@@ -116,10 +128,27 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
                 var new_ = document.createElement("img");
                 var avatar = document.querySelector(".avatar");
                 avatar.appendChild(new_);
-                new_.src = (data);
+                new_.src = ("pics_"+ user+ "/" + "profile_img" + "/" + data);;
             }
           });
       });
+
+      $.ajax(
+          {
+            type: "Get",
+            url: "sticker_load.php",
+            dataType: "JSON",
+            success: function(data) 
+            {
+              data.forEach(function(img)
+              {
+                var add = document.createElement("img");
+                var sticker = document.querySelector(".stickers_");
+                sticker.appendChild(add);
+                add.src = ("pics_"+ user+ "/" + "pics_alpha_" + user + "/" + img);;
+              });
+            }
+          });
       function myFunction() 
       {
         var x = document.querySelector(".gallery");

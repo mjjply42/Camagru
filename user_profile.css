@@ -28,3 +28,24 @@
     height: 20%;
     width: 20%;
 }
+
+.stickers_      {
+    background-color: pink;
+    height: 300px;
+    width: 300px;
+    clear: left;
+}
+
+.stickers_ img      {
+    width: 40%;
+    height: 40%;
+    border:1px solid #021a40;
+}
+
+.stickers_ img:hover{
+    border: 3px solid blue;
+}
+
+.stickers_ img:focus{
+    color: blue;
+}

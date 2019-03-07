@@ -29,8 +29,8 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
   </head>
   <body>
   <h1><?php echo($user); ?> 's Gallery</h1>
-  <div clas="search_gall">
-  </div>
+    <div class="content">
+        <div clas="search_gall"></div>
   <?php
     $grab = $conn->prepare("SELECT `pic_`, `status`, `user_id`, `image_id`
                             FROM   `profile_info`
@@ -44,55 +44,58 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
             {
                 $image_id = $row['image_id'];
                 $image_name = $row['pic_'];
-                echo("<div id='".$image_id."' class=".$image_name."><img id='".$image_id."' onclick='modalFunc(event);' src='./pics_".$user."/".$image_name."' style='height:250px; width:250px;'></div>");
+                echo("<div id='".$image_id."' class=".$image_name."><img id='".$image_id."' onclick='modalFunc(event);' src='./pics_".$user."/".$image_name."'></div>");
             }
         }
     }
   $conn = null;
   ?>
 
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="img_con">
-        <img class="fly_out" src='' id="">
-    </div>
-    <div>
-        <div>
-            <div class="like-con">
-                <span class="like" onclick="sendLike();" style="font-size:500%;color: grey;">&hearts;</span>
-            <p1 class="likes"><?php 
-            $conn = null;
-            try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
-            catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
-                die();
-            }
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="img_con">
+                    <img class="fly_out" src='' id="">
+                </div>
+                    <div>
+                        <div>
+                            <div class="like-con">
+                            <span class="like" onclick="sendLike();" style="font-size:500%;color: grey;">&hearts;</span>
+                            <p1 class="likes">
+                                <?php 
+                                $conn = null;
+                                try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
+                                catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
+                                die();
+                                }
 
-            $grab = $conn->prepare("SELECT like_, img_id, commenter FROM id_img_stat");
-            $grab->execute();
-            $count = 0;
-            while($result = $grab->fetchAll())
-            {
-                foreach($result as $row)
-                {
-                    if($row['like_'] == 1)
-                        $count++;
-                }
-            }
-            echo($count);
-            ?></p1>
+                                $grab = $conn->prepare("SELECT like_, img_id, commenter FROM id_img_stat");
+                                $grab->execute();
+                                $count = 0;
+                                while($result = $grab->fetchAll())
+                                {
+                                    foreach($result as $row)
+                                    {
+                                    if($row['like_'] == 1)
+                                    $count++;
+                                    }
+                                }
+                                echo($count);
+                                ?>
+                            </p1>
+                            </div>
+                        <div class="comments"></div>
+                        <br>
+                        <form class="post_comment" method="POST" autocomplete="off">
+                        <input class="com_con" style="width: 90%;" type="text" name="comment" placeholder="Post A Comment..">
+                        <input type="submit" name="enter" onclick="post_com(event);" value="Enter">
+                        </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="comments">
-            </div>
-            <br>
-            <form class="post_comment" method="POST" autocomplete="off">
-                <input class="com_con" style="width: 90%;" type="text" name="comment" placeholder="Post A Comment..">
-                <input type="submit" name="enter" onclick="post_com(event);" value="Enter">
-            </form>
         </div>
     </div>
-  </div>
-</div>
 <script>
 
 function        sendLike()
