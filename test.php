@@ -22,7 +22,6 @@
 //imagepng($dest ,100);
 //imagedestroy($dest);
 
-
 ?>
 
 <!DOCTYPE html>
@@ -34,18 +33,7 @@
   </head>
   <body>
   <script>
-  $(document).ready(function() 
-      {
-          $.ajax(
-          {
-            type: "Post",
-            url: "tester_.php",
-            data:{'comment': 'hjbdjhbjhbfjdhbfjdhfbdjhf'},
-            success: function(data) 
-            {
-              console.log("dope");
-            }
-          });
+  
   </script>
   </body>
 </html>

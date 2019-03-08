@@ -16,8 +16,8 @@
     overflow-y: scroll;
 }
 .gallery img      {
-    width: 60%;
-    height: 60%;
+    width: 30%;
+    height: 30%;
     border:1px solid #021a40;
 }
 .home           {

@@ -44,8 +44,9 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
 <html>
   <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="user_profile.css">
-    <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="user_profile.css">  
+  <meta charset="UTF-8">
     <title>Camagru - Profile</title>
   </head>
   <body>
@@ -77,6 +78,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
         <input type="text" placeholder="Search for User..." class="search_bar" name="search">
         <input type="submit" value="Search" class="search_but">
       </form>
+      
       </div>
       <br><div class="home">Home</div>
       <button class="toggle" onclick="myFunction();">View Gallery</button>

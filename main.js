@@ -1,6 +1,6 @@
-var new_usr = document.querySelector(".new");
-var login = document.querySelector(".login");
-var home = document.querySelector(".home");
+var new_usr = document.querySelector("#new");
+var login = document.querySelector("#login");
+var home = document.querySelector("#home");
 
 home.addEventListener('click', Home);
 login.addEventListener('click', Login);

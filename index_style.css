@@ -1,0 +1,58 @@
+.container      {
+    height: 300px;
+    width: 400px;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -238px;
+}
+
+h1                  {
+    color: white;
+}
+body img            {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 1500px;
+    height: 1000px;
+}
+
+.nav    {
+    position: fixed;
+    top: 0;
+}
+
+.con_ban    {
+    
+    height: 50px;
+    width: 400px;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -238px;
+}
+
+div button      {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 3px 3px 30px #000000;
+}
+
+.btn    {
+    background-color: #FF8226;
+    border: none;
+}
+
+#home   {
+    background-color: #FA5111;
+    border: none;
+    left: 0;
+    position: fixed;
+    z-index: 3;
+    border-radius: 0 0 15px 15px;
+}
