@@ -24,16 +24,15 @@ if ((!empty($_POST['login'])) && (!empty($_POST['pwd'])))
             session_start();
             $_SESSION['username'] = $username;
             session_write_close();
-            header("Location: usr_session.php?username='$username'");
+            echo(1);
+            exit();
         }
       }
     }
-    ##Switch these two lines out with an AJAX Call 
-    ##that shows beside form. That will be a flashy step.
-    echo("User Doesnt Exist. Redirecting");
-    header("Refresh: 1; login.php");
+    echo(2);
+    exit();
 
 }
 else
-    header("Location:  login.php");
+    echo(3);
 ?>

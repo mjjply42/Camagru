@@ -16,14 +16,15 @@
   </nav>
   <div class="btn btn-info btn-lg" id="home">Home</div>
   <img src="BeFunky-collage3.png">
-<div class="background">
-    <div class="container">
-      <div class="con_al">
-  <!--<h1>Camagru</h1>-->
-      <button type="button" class="btn btn-primary btn-lg btn-block" id="login">Login</button>
-      <button type="button" class="btn btn-primary btn-lg btn-block" id="new" >Sign-Up</button><br>
+    <div class="background">
+      <div class="container">
+        <div class="con_al">
+        <!--<h1>Camagru</h1>-->
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="login">Login</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="new" >Sign-Up</button><br>
+        </div>
       </div>
-</div>
+    </div>
   </body>
   <script src="main.js"></script>
 </html>

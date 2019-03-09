@@ -45,10 +45,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
             { 
                 if ($row['user_usrname'] == $username || $row['user_email'] == $email)
                 {
-                    ##Switch these two lines out with an AJAX Call 
-                    ##that shows beside form. That will be a flashy step.
-                    echo("User Already Exists. Redirecting");
-                    header("Refresh: 1; sign_up.php");
+                    echo(2);
                     $ifNew = false;
                     break;
                 }
@@ -66,7 +63,6 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
     $conn = NULL;
     if ($ifNew == true)
     {
-        echo("HERE");
         try 
         {
             $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
@@ -91,11 +87,12 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
         setcookie('email', $email, time()+3600);
         setcookie('verify', $e_verify, time()+3600);
         session_write_close();
-        header("Location: check_email.php?username=$username&email=$email&verify=$e_verify");
+        echo($e_verify);
+        exit();
     }
 }
 else
-    header("Location:  sign_up.php");
+    echo(3);
 
 
 ?>
