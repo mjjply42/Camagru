@@ -19,9 +19,9 @@
   <form method="POST" autocomplete="off" class="log">
     Username<input type="login" id="login" class="form-control" name="login"><br>
     Password<input type="password" name="pwd" class="form-control" id="pwd"><br><br>
-  <input type="submit" value="Submit" onclick="checkUser();" name="submit"><br>
+  <input type="submit" class="btn btn-primary" value="Submit" onclick="checkUser();" name="submit"><br>
   </form>
-  <button class="forgot_pass">Forgot Password</button>
+  <button class="forgot_pass btn btn-primary" style="color: white; box-shadow: none;" >Forgot Password</button>
   </div>
   <div class="message3">
     <p>Fill in all fields</p>

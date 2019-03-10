@@ -4,8 +4,6 @@ if(!empty($_POST['login']) && (!empty($_POST['email'])))
 {
     $username = $_POST['login'];
     $email = $_POST['email'];
-    echo($username);
-    echo($password);
     $DB_HOST = "localhost";
     $DB_USER = "root";
     $DB_PASSWORD = "root";
@@ -30,13 +28,9 @@ if(!empty($_POST['login']) && (!empty($_POST['email'])))
     {
         foreach ($result as $row)
         {
-            echo("here");
-            echo($row['user_usrname']);
-            echo($row['user_email']);
             if (($row['user_usrname'] == $username) && ($row['user_email'] == $email))
             {
-                echo("HERE");
-                $n=10;  
+                $n = 10;  
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
                 $randomString = ''; 
   
@@ -58,14 +52,17 @@ if(!empty($_POST['login']) && (!empty($_POST['email'])))
                                         SET `user_pwd` = '$password' 
                                         WHERE `user_usrname` = '$username'");
                 $new->execute();
-                header("Location:   send_reset_password.php?email=$email&reset=$randomString");
+                echo($randomString);
+                exit();
+            }
+            else
+            {
+                echo(2);
+                exit();
             }
         }
     }
-    #Create Connection to DB
-    #Check if POST(login and email) is anywhere on database
-        #->Go back if no match
-    #If match, send email and update
 }
+echo($_POST['email']);
 
 ?>

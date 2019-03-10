@@ -23,15 +23,15 @@ First Name <input type="text" id="first" class="form-control" name="first"><br>
 Last Name <input type="text" id="last" class="form-control" name="last"><br>
 Email <input type="text" id="email" class="form-control" name="email"><br>
 Password <input type="password" id="pwd" class="form-control" name="password"><br><br>
-<input type="submit" onclick="addUser();" value="submit" name="submit"><br><br>
+<input type="submit" class="btn btn-primary" onclick="addUser();" value="submit" name="submit"><br><br>
 </form>
 </div>
 <div class="message3">
     <p>Fill in all fields</p>
-  </div>
-  <div class="message2">
+</div>
+<div class="message2">
     <p>User Exists with that email or Username</p>
-  </div>
+</div>
 <script>
   $(".signup-form").submit(function(e) {
     e.preventDefault();
@@ -98,7 +98,7 @@ Password <input type="password" id="pwd" class="form-control" name="password"><b
                 var eVerify = data;
                 user_id.className += " is-valid";
                 pass_id.className += " is-valid";
-                //window.location.href = "check_email.php?username="+username+"&email="+email+"&verify="+eVerify+"";
+                window.location.href = "check_email.php?username="+username+"&email="+email+"&verify="+eVerify+"";
               }
           }
         });
