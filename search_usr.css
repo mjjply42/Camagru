@@ -81,9 +81,13 @@ p1              {
     font-size: 30%;
 }
 
-.modal-content img {
-    height: 100%;
-    width: 100%;
+.fly_out {
+    height: auto;
+    width: 90%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+   
 }
 
 .comments   {
@@ -162,4 +166,15 @@ body img:active,body img:hover   {
     position: relative;
     padding-bottom: 300px;
     overflow: hidden;
+}
+
+.modal-header       {
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+.img_con        {
+    height: 100%;
+    width: 100%;
 }

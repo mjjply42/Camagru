@@ -68,7 +68,7 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
   $conn = null;
   ?>
   <div class="modal fade myModal" id="exampleModalCenter"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -108,8 +108,8 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
             <div class="comments"></div>
             <br>
                 <form class="post_comment" method="POST" autocomplete="off">
-                    <input class="com_con form-control" type="text" name="comment" placeholder="Post A Comment..">
-                    <input type="submit" class="btn btn-primary" name="enter" onclick="post_com(event);" value="Enter">
+                    <input class="com_con form-control" type="text" name="comment" placeholder="Post A Comment.."><br>
+                    <input type="submit" class="btn btn-primary btn-lg" name="enter" onclick="post_com(event);" value="Enter">
                 </form>
         </div>
     </div>

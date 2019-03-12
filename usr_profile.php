@@ -87,7 +87,49 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       </div>
       <div class="stickers_">
       </div>
+      <div class="video-container">
+        <video autoplay></video>
+        <button id="capture">Capture</button>
+        <button id="shoot">Screenshot</button>
+        <img class="img_" src="">
+        <canvas class="fit_" style="display:none;"></canvas>
+      </div>
       <script>
+      const constraints = {
+        video: true
+      };
+
+      const video = document.querySelector('video');
+      var start_butt = document.querySelector("#capture");
+      var shoot = document.querySelector("#shoot");
+      var img = document.querySelector(".img_");
+      var canvas = document.querySelector(".fit_");
+      img.style.display = 'none';
+
+      start_butt.onclick = function()
+      {
+        navigator.mediaDevices.getUserMedia(constraints).then(success).catch(handleError);
+      }
+      
+      shoot.onclick = video.onclick = function() {
+        img.style.display = 'block';
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        img.src = canvas.toDataURL('image/webp');
+      };
+
+      function    handleError()
+      {
+        exit("Error in stream");
+      }
+      function    success(stream)
+      {
+        shoot.disabled = false;
+        video.srcObject = stream;
+      }
+      
+
       var user = document.querySelector(".user").innerText;
       user = user.slice(0, -10);
       var x = document.querySelector(".gallery");
