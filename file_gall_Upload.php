@@ -5,7 +5,7 @@ $fileName = $_FILES['myfile']['name'];
 $fileLocation = $_FILES['myfile']['tmp_name'];
 $fileExt = strtolower(end(explode('.', $fileName)));
 
-if (($fileExt != "png") && ($fileExt != "jpeg")){
+if (($fileExt != "png") && ($fileExt != "jpg")){
     ##################################AJAX
     echo("Only png files or jpeg files allowed for upload");
     exit();

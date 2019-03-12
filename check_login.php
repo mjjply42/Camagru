@@ -34,5 +34,5 @@ if ((!empty($_POST['login'])) && (!empty($_POST['pwd'])))
 
 }
 else
-    echo(3);
+    echo($_POST['login']);
 ?>

@@ -29,9 +29,5 @@ while($result = $test->fetchAll())
     echo($image);
     exit();
 }
-$image = "blank_profile.png";
-echo($image);
-
-
-
+echo(0);
 ?>

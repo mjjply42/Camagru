@@ -63,6 +63,6 @@ if(!empty($_POST['login']) && (!empty($_POST['email'])))
         }
     }
 }
-echo($_POST['email']);
+echo(3);
 
 ?>

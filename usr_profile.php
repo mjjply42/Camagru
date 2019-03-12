@@ -22,6 +22,7 @@ while ($result = $validity->fetchAll())
 if (isset($_POST['logout']))
 {
   $_SESSION['logged'] = false;
+  unset($_SESSION['logged']);
 }
 if ($_SESSION['logged'] == false)
   header('Location:  login.php');
@@ -85,7 +86,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       <div class="gallery">
       </div>
       <div class="stickers_">
-      <!-- <button type="button" onclick="alert('Hello World!')"><img src="cat2.png"></button>-->
       </div>
       <script>
       var user = document.querySelector(".user").innerText;
@@ -108,15 +108,25 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
             type: "Get",
             url: "gallery_load.php",
             dataType: "JSON",
-            success: function(data) 
+            success: function(data)
             {
-              data.forEach(function(img)
-              {
-                var add = document.createElement("img");
-                var gallery = document.querySelector(".gallery");
-                gallery.appendChild(add);
-                add.src = ("pics_"+ user+ "/" + img);
-              });
+              if (data == 0)
+                {
+                  var add = document.createElement("img");
+                  var gallery = document.querySelector(".gallery");
+                  gallery.appendChild(add);
+                  add.src = ("default/no_images.png");
+                }
+                else
+                {
+                  data.forEach(function(img_)
+                  {
+                    var add = document.createElement("img");
+                    var gallery = document.querySelector(".gallery");
+                    gallery.appendChild(add);
+                    add.src = ("pics_"+ user+ "/" + img_);
+                  });
+                }
             }
           });
 
@@ -127,10 +137,20 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
             dataType: 'text',
             success: function(data) 
             {
+              if (data == 0)
+              {
                 var new_ = document.createElement("img");
                 var avatar = document.querySelector(".avatar");
                 avatar.appendChild(new_);
-                new_.src = ("pics_"+ user+ "/" + "profile_img" + "/" + data);;
+                new_.src = ("default/blank_profile.png");
+              }
+              else
+              {
+                var new_ = document.createElement("img");
+                var avatar = document.querySelector(".avatar");
+                avatar.appendChild(new_);
+                new_.src = ("pics_"+ user+ "/" + "profile_img" + "/" + data);
+              }
             }
           });
       });
@@ -142,20 +162,33 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
             dataType: "JSON",
             success: function(data) 
             {
-              data.forEach(function(img)
+              if (data == 0)
               {
                 var add = document.createElement("img");
                 var input = document.createElement("input");
                 input.type = "radio";
-                input.name = img;
-                input.value = img;
                 var sticker = document.querySelector(".stickers_");
                 sticker.appendChild(input);
                 sticker.appendChild(add);
                 sticker.appendChild(document.createElement("br"));
-                add.src = ("pics_"+ user+ "/" + "pics_alpha_" + user + "/" + img);
-
-              });
+                add.src = ("default/no_images.png");
+              }
+              else
+              {
+                data.forEach(function(img_)
+                {
+                  var add = document.createElement("img");
+                  var input = document.createElement("input");
+                  input.type = "radio";
+                  input.name = img_;
+                  input.value = img_;
+                  var sticker = document.querySelector(".stickers_");
+                  sticker.appendChild(input);
+                  sticker.appendChild(add);
+                  sticker.appendChild(document.createElement("br"));
+                  add.src = ("pics_"+ user+ "/" + "pics_alpha_" + user + "/" + img_);
+                });
+              }
             }
           });
       function myFunction() 

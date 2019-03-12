@@ -1,4 +1,5 @@
 <?php
+
 $DB_HOST = "localhost";
 $DB_USER = "root";
 $DB_PASSWORD = "root";
@@ -7,15 +8,7 @@ $DB_CHARSET = "utf8mb4";
 $DB_PORT = 8889;
 $DB_SET_DSN = "mysql:host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
 $DB_DSN = "mysql:dbname=$DB_NAME;host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
-#******* $("#prospects_form").submit(function(e) {
-#********* e.preventDefault();
-#});
-##^^Function will prevent form from switching windows on send
-##Grab&Check values through ajax, using JQUERY
 
-#New Users cannot have same:
-#user_usrname
-#same user_email
 try {
     $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 }
@@ -47,7 +40,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
                 {
                     echo(2);
                     $ifNew = false;
-                    break;
+                    exit();
                 }
                 else
                 {

@@ -22,10 +22,6 @@ body img            {
     opacity: 0.7;
 }
 
-.nav    {
-    position: fixed;
-    top: 0;
-}
 
 .con_ban    {
     
@@ -53,7 +49,7 @@ div button      {
 #home   {
     background-color: #FA5111;
     border: none;
-    left: 0;
+    left: 38px;
     position: fixed;
     z-index: 3;
     border-radius: 0 0 15px 15px;
@@ -66,4 +62,23 @@ div button      {
     background-color: white;
     height: 100%;
     width: 100%;
+}
+
+nav #pwd1, nav #login1   {
+    margin-left: 20px;
+}
+nav #sub    {
+    margin-left: 10px;
+}
+
+.forgot_pass:active, .forgot_pass:hover   {
+    cursor: pointer;
+}
+
+.forgot_pass:hover      {
+    text-decoration: underline;
+}
+
+.forgot_pass    {
+    margin-top: 20px;
 }

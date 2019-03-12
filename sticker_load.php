@@ -35,6 +35,6 @@ while($result = $test->fetchAll())
     echo(json_encode($images));
     exit();
 }
-$images = array("no_images.png");
-echo(json_encode($images));
+
+echo(0);
 ?>
