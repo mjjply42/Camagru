@@ -3,7 +3,9 @@ session_start();
 $fileSize = $_FILES['myfile']['size'];
 $fileName = $_FILES['myfile']['name'];
 $fileLocation = $_FILES['myfile']['tmp_name'];
-$fileExt = strtolower(end(explode('.', $fileName)));
+$first = explode('.', $fileName);
+$second = end($first);
+$fileExt = strtolower($second);
 
 if (($fileExt != "png") && ($fileExt != "jpeg")){
     ##################################AJAX
@@ -27,34 +29,34 @@ if (!file_exists("pics_" .$_SESSION['username']. "/pics_alpha_" .$_SESSION['user
     $DB_PORT = 8889;
     $DB_SET_DSN = "mysql:host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
     $DB_DSN = "mysql:dbname=$DB_NAME;host=$DB_HOST:$DB_PORT;charset=$DB_CHARSET";
-
     try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
-
     catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
         die(); }
-
-    $set = $conn->prepare("SELECT pic_
+    $set = $conn->prepare("SELECT pic_, `status`
                             FROM profile_info
                             WHERE pic_ = '$fileName'");
     $set->execute();
-    if($result = $set->fetchAll())
+    while($result = $set->fetchAll())
     {
         #################AJAX
-        echo("Sticker already exists Cannot re-upload");
+        foreach($result as $row)
+        {
+            if ($row['status'] == "private" )
+                echo("Sticker already exists Cannot re-upload");
+        }
     }
-    else
-    {
-        $id = intval($_SESSION['id']);
-        $conn = null;
-        try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
-
-        catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
-            die(); }
-        $new = $conn->prepare("INSERT INTO profile_info
-                            (`user_id`, `create_date`, `status`, `pic_`)
-                            VALUES ($id, DATE(NOW()), 'private', '$fileName')");
-        $new->execute();
-        header("Location:   usr_profile.php");
-    }
+    
+    $id = intval($_SESSION['id']);
+    $conn = null;
+    try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
+    catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
+        die(); }
+    $new = $conn->prepare("INSERT INTO profile_info
+                        (`user_id`, `create_date`, `status`, `pic_`)
+                        VALUES ($id, DATE(NOW()), 'private', '$fileName')");
+    $new->execute();
+    header("Location:   usr_profile.php");
+    
 }
+echo("GET FUCKED");
 ?>

@@ -30,7 +30,7 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="search_usr.css">
   </head>
-  <body onclick="swap();">
+  <body>
   <nav class="navbar navbar-light bg-light">
   <form class="form-inline log" method="POST" autocomplete="off">
 
@@ -124,6 +124,7 @@ function    Home()    { window.location.href = "index.php"; }
 function        sendLike()
 {
     var im_id = document.querySelector(".fly_out").id;
+    console.log(im_id);
 
     $.ajax(
     {
@@ -136,6 +137,7 @@ function        sendLike()
             var count = document.querySelector(".likes").textContent;
             if (data == 1)
             {
+                console.log(data);
                 heart.style.color = 'red';
                 count = parseInt(count);
                 count++;

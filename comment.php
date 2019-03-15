@@ -41,4 +41,5 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
 $set = $conn->prepare("INSERT INTO `id_img_stat`(`img_id`, `comment`, `commenter`) 
                         VALUES ($im_id, '$comment', $commenter)");
 $set->execute();
+echo(1);
 ?>

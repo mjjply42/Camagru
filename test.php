@@ -21,6 +21,11 @@
 //imagedestroy($img);
 //imagepng($dest ,100);
 //imagedestroy($dest);
+$base = explode(",", $_POST['base_64']);
+$round_1 = uniqid($base);
+$round_2 = uniqid($round_1);
+$check = base64_decode($base[1]);
+file_put_contents($round_2.".png", $check);
 
 ?>
 

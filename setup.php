@@ -41,9 +41,9 @@ try {
                 CREATE TABLE id_img_stat    (
                     table_id INT AUTO_INCREMENT PRIMARY KEY,
                     img_id INT NOT NULL,
-                    comment VARCHAR(255) NOT NULL,
+                    comment VARCHAR(255),
                     commenter  INT NOT NULL,
-                    like_ TINYINT(1) NOT NULL);"
+                    like_ TINYINT(1));"
                 );
 }
 catch   (PDOException $event) {

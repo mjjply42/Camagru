@@ -65,9 +65,9 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       </form>
       <button class="settings">Settings</button>
       <button class="test">test</button>
-      <form id="uploadbanner" enctype="multipart/form-data" method="post" action="file_stick_Upload.php">
+      <form id="uploadstick" enctype="multipart/form-data" method="post" action="file_stick_Upload.php">
       <br>Upload Sticker
-      <input id="fileupload" name="myfile" type="file" />
+      <input id="fileupload" class="stick_up"name="myfile" type="file" />
       <input type="submit" value="submit" id="submit" />
       </form>
       <form id="uploadbanner" enctype="multipart/form-data" method="post" action="file_gall_Upload.php">
@@ -91,7 +91,9 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
         <video autoplay></video>
         <button id="capture">Capture</button>
         <button id="shoot">Screenshot</button>
-        <img class="img_" src="">
+        <button id="stop">Stop</button>
+        <button id="save">Save</button>
+        <img type="image/jpeg"class="img_" src="">
         <canvas class="fit_" style="display:none;"></canvas>
       </div>
       <script>
@@ -104,19 +106,43 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       var shoot = document.querySelector("#shoot");
       var img = document.querySelector(".img_");
       var canvas = document.querySelector(".fit_");
+      var stop = document.querySelector("#stop");
+      var media;
       img.style.display = 'none';
 
       start_butt.onclick = function()
       {
         navigator.mediaDevices.getUserMedia(constraints).then(success).catch(handleError);
       }
+      stop.onclick = function()
+      {
+        video.srcObject = null;
+        media.getTracks().forEach(function (media) {
+          media.stop();
+        });
+      }
       
+      save.onclick = function ()
+      {
+        var img_src = document.querySelector(".img_").src;
+        $.ajax(
+        {
+          type: "Post",
+          url: "test.php",
+          data:{ 'base_64': img_src },
+          success: function(data) 
+          {
+            console.log("We good");
+          }
+        });
+      }
+
       shoot.onclick = video.onclick = function() {
         img.style.display = 'block';
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         canvas.getContext('2d').drawImage(video, 0, 0);
-        img.src = canvas.toDataURL('image/webp');
+        img.src = canvas.toDataURL('image/png');
       };
 
       function    handleError()
@@ -126,7 +152,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       function    success(stream)
       {
         shoot.disabled = false;
-        video.srcObject = stream;
+        media = video.srcObject = stream;
       }
       
 

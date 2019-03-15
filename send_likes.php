@@ -24,7 +24,7 @@ while ($result = $check->fetchAll())
 {
     foreach($result as $row)
     {
-        if ($row['commenter'] == $usr_id && $row['img_id'] == $im_id && $row['like_'] == 1)
+        if (($row['commenter'] == $usr_id) && ($row['img_id'] == $im_id) && ($row['like_'] == 1))
         {
             $conn = null;
             try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }

@@ -24,10 +24,11 @@ $test = $conn->prepare("SELECT profile_pic, `user_id`
                         WHERE `user_id` = '$id'");
 $test->execute();
 while($result = $test->fetchAll())
-{
-    $image = $result[0]['profile_pic'];
-    echo($image);
-    exit();
+{       if ($result)
+        {
+            $image = $result[0]['profile_pic'];
+            exit($image);
+        }
 }
-echo(0);
+exit(0);
 ?>

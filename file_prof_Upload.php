@@ -18,8 +18,7 @@ if ($fileSize >= 32000000){
 }
 if (!file_exists("pics_" .$_SESSION['username']."/profile_img/".$fileName.""))
 {
-    echo("Heree");
-    move_uploaded_file($_FILES['myfile']['tmp_name'], "pics_" .$_SESSION['username']."/profile_img/".$fileName."");
+    move_uploaded_file($_FILES['myfile']['tmp_name'], "pics_" .$_SESSION['username'].'/profile_img/'.$fileName."");
     $DB_HOST = "localhost";
     $DB_USER = "root";
     $DB_PASSWORD = "root";
