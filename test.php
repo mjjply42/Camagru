@@ -4,29 +4,26 @@
 ##SELECT `image_id`
 ##FROM profile_info
 ##WHERE pic_ = '$fileName'");
-///session_start();
+session_start();
 
-//header("Content-type: image/png");
-//$img = imagecreatefrompng("dog.png");
-//$alph = imagecreatefrompng("cat2.png");
-//$she = imagesy($alph);
-//$swi = imagesx($alph);
-//$dhe = 200;
-//$dwi = 200;
-////$dest = imagecreatetruecolor($swi, $she);
-//imagecopyresampled($dest, $alph, 0, 0, 0, 0, $dhe, $dwi, $she, $swi);
+
+
+$img = imagecreatefrompng("dog.png");
+$alph = imagecreatefrompng("cat2.png");
+$she = imagesy($alph);
+$swi = imagesx($alph);
+$dhe = 200;
+$dwi = 200;
+$dest = imagecreatetruecolor($swi, $she);
+imagecopyresampled($dest, $alph, 0, 0, 0, 0, $dhe, $dwi, $she, $swi);
 // use imagecopymerge instead and set the copied image opacity to 50
-//imagecopy($img, $dest, 0, 0, 0, 0, 200, 200); 
-//imagepng($img);
-//imagedestroy($img);
-//imagepng($dest ,100);
-//imagedestroy($dest);
-$base = explode(",", $_POST['base_64']);
-$round_1 = uniqid($base);
-$round_2 = uniqid($round_1);
-$check = base64_decode($base[1]);
-file_put_contents($round_2.".png", $check);
-
+imagecopy($img, $dest, 0, 0, 0, 0, 200, 200);
+header("Content-type: image/png");
+imagepng($img);
+file_put_contents("./default/test2.png", $img);
+imagedestroy($img);
+imagepng($dest ,100);
+imagedestroy($dest);
 ?>
 
 <!DOCTYPE html>
@@ -67,3 +64,4 @@ file_put_contents($round_2.".png", $check);
 </div>
   </body>
 </html>
+©

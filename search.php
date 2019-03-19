@@ -32,11 +32,9 @@ catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>"
   </head>
   <body>
   <nav class="navbar navbar-light bg-light">
-  <form class="form-inline log" method="POST" autocomplete="off">
-
-    <form method="POST" action="usr_profile.php">
+  <form class="form-inline log" method="POST" autocomplete="off" action="usr_profile.php">
       <input class="logout btn btn-primary btn-sm" type="submit" value="Logout" name="logout"></input>
-      </form>
+
   </form>
   <form action="usr_user_search.php" method="POST" autocomplete="off">
         <input type="text" placeholder="Search for User..." class="search_bar" name="search">

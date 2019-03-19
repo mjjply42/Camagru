@@ -1,6 +1,5 @@
 .form            {
     background-color: orange;
-    float: left;
     height: 300px;
     width:  300px;
 }
@@ -9,24 +8,23 @@
     width: 200px;
 }
 .gallery       {
-    width:50%;
-    height:50%;
-    background-color:blue;
+    width:  100%;
+    height: 400px;
     overflow-y: auto;
     overflow-y: scroll;
 }
 .gallery img      {
-    width: 30%;
-    height: 30%;
+    width: auto;
+    height: 50%;
     border:1px solid #021a40;
 }
-.home           {
-    display: inline;
-}
 
+.gallery img:hover{
+    cursor: default;
+}
 .avatar    img     {
-    height: 20%;
-    width: 20%;
+    height: 15%;
+    width: 15%;
 }
 
 .stickers_      {
@@ -34,12 +32,40 @@
 }
 
 .stickers_ img      {
-    width: 20%;
-    height: 20%;
+    width: auto;
+    height: 80px;
     border:1px solid #021a40;
+    float: right;
 }
 
 img     {
     height: 30%;
     width: 30%;
+}
+
+.gall_zone  {
+    height: 40%;
+    width: 40%;
+    float: right;
+}
+
+.user       {
+    font-size: 30px;
+}
+
+.modal video{
+    height: 250px;
+    width: auto;
+}
+
+.modal-body .img_  {
+    height: 250px;
+    width: auto;
+}
+
+.Uploads    {
+    height: 100%;
+    width: 400px;
+    background-color: #FFE2D0;
+    float: right;
 }
