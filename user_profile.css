@@ -61,6 +61,7 @@ img     {
 .modal-body .img_  {
     height: 250px;
     width: auto;
+    filter: sepia(100%);
 }
 
 .Uploads    {

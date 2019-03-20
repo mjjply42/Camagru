@@ -125,6 +125,16 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       <div class="modal-body">
         <button id="clear_image" type="button" class="btn btn-primary" style="display: none;">Clear Image</button>
         <img type="image/jpeg"class="img_" src="">
+        <div class="form-group">
+    <label for="filter">Filter Select</label>
+    <select class="form-control" id="filter">
+      <option>Sepia</option>
+      <option>Grayscale</option>
+      <option>Opacity</option>
+      <option>Saturate</option>
+      <option>Contrast</option>
+    </select>
+  </div>
         <div class="stickers_">
       </div>
         <canvas class="fit_" style="display:none;"></canvas>
@@ -154,6 +164,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       var clear_butt = document.querySelector("#clear_image");
       var title = document.querySelector(".modal-title");
       var loading = document.querySelector(".spinner-border");
+      var filt = document.querySelector("#filter");
       var media;
       img.style.display = 'none';
 
@@ -191,7 +202,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
         {
           type: "Post",
           url: "test.php",
-          data:{ 'base_64': img_src },
+          data:{ 'base_64': img_src},
           beforeSend: function()
           {
             loading.style.display = "";
@@ -213,6 +224,9 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
         img.src = canvas.toDataURL('image/png');
         clear_butt.style.display = 'block';
         title.textContent = "Save your new picture!";
+        var option = filt.options.selectedIndex;
+        var set_filter = filt.item(filt.options.selectedIndex).value;
+        img.style.filter = set_filter + "(100%)";
       };
 
       function    handleError()
