@@ -1,0 +1,180 @@
+/*
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 50%;
+}
+
+.modal-content img{
+    height: 300px;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.new_div_com    {
+    border: 1px solid #d4d7db;
+}
+
+.img_con        {
+    border: 1px solid #d4d7db;
+    width: 100%;
+    height: 300px;
+}
+
+p1              {
+    margin-left: 45%;
+    font-size: 80%;
+}
+*/
+
+
+.like:hover,
+.like:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.like-con       {
+    width: 8%;
+    margin-left: 45%;
+}
+
+.likes     {
+    margin-left: 19px;
+}
+
+.like       {
+    font-size: 30%;
+}
+
+.fly_out {
+    height: auto;
+    width: 90%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+   
+}
+
+.comments   {
+    width: 100%;
+    height: 200px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}
+
+body img    {
+    height: 190px;
+    width: auto;
+    float: left;
+}
+body img:active,body img:hover   {
+    cursor: pointer;
+}
+
+.btn-primary     {
+    background-color: #FF8226;
+    border-style: none;
+}
+
+#home   {
+    background-color: #FA5111;
+    border: none;
+    margin-left: 37px;
+    z-index: 3;
+    border-radius: 0 0 15px 15px;
+}
+
+#home:active,#home:hover   {
+    cursor: pointer;
+}
+
+.logout         {
+    margin-left: 20px;
+    width: 87px;
+}
+
+.img_div   {
+    background-color: white;
+    margin: 20px;
+    height: 300px;
+    width: 370px;
+    float: left;
+    box-shadow: -3px 3px 10px #c1c1c1;
+    border-radius: 5px;
+}
+
+.img_div    img {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.card       {
+    position: relative;
+}
+
+.footer        {
+    height: 300px;
+    width: 100%;
+    background-color: #FF8226;
+    bottom: 0;
+    position: absolute;
+}
+
+.contain    {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 300px;
+    overflow: hidden;
+}
+
+.modal-header       {
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+.img_con        {
+    height: 100%;
+    width: 100%;
+}
