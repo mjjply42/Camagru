@@ -1,5 +1,27 @@
 <?php
-    echo($_POST['send']);
+include_once 'database.php';
+
+try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
+
+catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
+    die(); }
+$state = $conn->prepare("SELECT profile_info.image_id, profile_info.user_id, users.user_id, users.user_usrname, users.user_email
+                            FROM users, profile_info
+                            WHERE profile_info.image_id = 6
+                            AND users.user_id = profile_info.user_id");
+function    newLike()
+{
+
+}
+
+function    newComment()
+{
+    
+
+}
+
+function    newUser()
+{
     $email = $_COOKIE['email'];
     $username = $_COOKIE['username'];
     $to      = $email;
@@ -20,4 +42,5 @@
     http://localhost:8888/new_usr_session.php?email='.$email.'&verify='.$e_verify.'';
     
     mail($to, $subject, $message, $headers);
+}
 ?>
