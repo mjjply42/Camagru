@@ -63,7 +63,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
 
     <form method="POST" action="usr_profile.php">
       <input class="logout btn btn-primary btn-sm" type="submit" value="Logout" name="logout"></input>
-<<<<<<< HEAD
     </form>
   </form>
   <div class="dropdown">
@@ -116,8 +115,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
   <button type="submit" class="btn btn-primary" name="Submit" value="submit">Update</button>
 </form>
   </div>
-
-=======
       </form>
   </form>
   <div class="dropdown">
@@ -128,7 +125,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
     <a class="dropdown-item" href="/change_email.php">Change Email</a>
   </div>
   </div>
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
   <form action="usr_user_search.php" method="POST" autocomplete="off">
         <input type="text" placeholder="Search for User..." class="search_bar" name="search">
         <input type="submit" class="btn btn-primary" value="Search" class="search_but">
@@ -138,13 +134,10 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
     <div class="btn btn-primary btn-lg home" id="home">Home</div><br><br><br>
     <div class="gall_zone">
       <button class="toggle btn btn-primary btn-lg btn-block view_gall" onclick="myFunction();">View Gallery</button>
-<<<<<<< HEAD
         <div class="gallery">
         </div>
-=======
       <div class="gallery">
       </div>
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
       <div class="spinner-border" style="display: none;" role="status">
   <span class="sr-only">Loading...</span>
 </div>
@@ -187,17 +180,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
         <button id="clear_image" type="button" class="btn btn-primary" style="display: none;">Clear Image</button>
         <img type="image/jpeg"class="img_" src="">
         <div class="form-group">
-<<<<<<< HEAD
-=======
-    <label for="filter">Filter Select</label>
-    <select class="form-control" id="filter">
-      <option>Sepia</option>
-      <option>Grayscale</option>
-      <option>Opacity</option>
-      <option>Saturate</option>
-      <option>Contrast</option>
-    </select>
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
   </div>
         <div class="stickers_">
       </div>
@@ -228,19 +210,13 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       var clear_butt = document.querySelector("#clear_image");
       var title = document.querySelector(".modal-title");
       var loading = document.querySelector(".spinner-border");
-<<<<<<< HEAD
       var stick_path = "";
       var stickers = document.querySelector(".stickers_");
       var gallery = document.querySelector(".gallery");
       var media;
       img.style.display = 'none';
-      
-=======
-      var filt = document.querySelector("#filter");
       var media;
       img.style.display = 'none';
-
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
       clear_butt.onclick = function()
       {
         if (img.style.display != 'none')
@@ -274,14 +250,9 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
         $.ajax(
         {
           type: "Post",
-<<<<<<< HEAD
           url: "savephoto.php",
           data:{ 'base_64': img_src,
                   'alpha':  stick_path},
-=======
-          url: "test.php",
-          data:{ 'base_64': img_src},
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
           beforeSend: function()
           {
             loading.style.display = "";
@@ -289,10 +260,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
           success: function(data) 
           {
             title.textContent = "Take a Picture!";
-<<<<<<< HEAD
-=======
-            console.log("We good");
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
             loading.style.display = "none";
           }
         });
@@ -307,12 +274,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
         img.src = canvas.toDataURL('image/png');
         clear_butt.style.display = 'block';
         title.textContent = "Save your new picture!";
-<<<<<<< HEAD
-=======
-        var option = filt.options.selectedIndex;
-        var set_filter = filt.item(filt.options.selectedIndex).value;
-        img.style.filter = set_filter + "(100%)";
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
       };
 
       function    handleError()
@@ -486,10 +447,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
           x.style.display = "none";
         }
       }
-<<<<<<< HEAD
-
-=======
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
       </script>
       </div>
   </body>
