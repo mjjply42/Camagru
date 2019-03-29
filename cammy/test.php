@@ -5,10 +5,6 @@
 ##FROM profile_info
 ##WHERE pic_ = '$fileName'");
 session_start();
-<<<<<<< HEAD
-=======
-
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
 
 $base = explode(",", $_POST['base_64']);
 $round_1 = uniqid($base);
@@ -16,7 +12,7 @@ $round_2 = uniqid($round_1);
 $check = base64_decode($base[1]);
 $new_image = $round_2.".png";
 file_put_contents($new_image, $check);
-<<<<<<< HEAD
+
 $over_im = $_POST['alpha'];
 $img = imagecreatefrompng($new_image);
 $alph = imagecreatefrompng($over_im);
@@ -27,7 +23,6 @@ $dwi = 200;
 $dest = imagecreatetruecolor($swi, $she);
 imagealphablending($dest, false);
 imagecopyresampled($dest, $alph, 0, 0, 0, 0, $dwi, $dhe, $swi, $she);
-// use imagecopymerge instead and set the copied image opacity to 50
 imagecopy($img, $dest, 0, 0, 0, 0, 200, 200);
 header("Content-type: image/png");
 imagepng($img,"./pics_".$_SESSION['username']."/".$new_image);
@@ -83,14 +78,12 @@ $dwi = 200;
 $dest = imagecreatetruecolor($swi, $she);
 imagealphablending($dest, false);
 imagecopyresampled($dest, $alph, 0, 0, 0, 0, $dhe, $dwi, $she, $swi);
-// use imagecopymerge instead and set the copied image opacity to 50
 imagecopy($img, $dest, 0, 0, 0, 0, 200, 200);
 header("Content-type: image/png");
 imagepng($img,"./pics_".$_SESSION['username']."/".$new_image);
 imagedestroy($img);
 imagepng($dest ,100);
 imagedestroy($dest);
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
 ?>
 
 <!DOCTYPE html>

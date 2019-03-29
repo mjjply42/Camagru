@@ -8,7 +8,7 @@ $second = end($first);
 $fileExt = strtolower($second);
 $list = getimagesize($fileName);
 
-if ($list[0] > 650 || $list[1] > 650)
+if ($list[0] > 700 || $list[1] > 700)
     {
         echo("File is too large. Width is: ".$list[0]. " and Height is: ".$list[1].". Both need to be less than 650");
         exit();

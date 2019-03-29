@@ -18,13 +18,10 @@
     height: 50%;
     border:1px solid #021a40;
 }
-<<<<<<< HEAD
 
 .gallery img:hover{
     cursor: default;
 }
-=======
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
 
 .gallery img:hover{
     cursor: default;
@@ -40,8 +37,7 @@
     clear: left;
 }
 
-<<<<<<< HEAD
-=======
+
 .stickers_ img      {
     width: auto;
     height: 80px;
@@ -49,7 +45,6 @@
     float: right;
 }
 
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
 img     {
     height: 30%;
     width: 30%;
@@ -73,10 +68,6 @@ img     {
 .modal-body .img_  {
     height: 250px;
     width: auto;
-<<<<<<< HEAD
-=======
-    filter: sepia(100%);
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e
 }
 
 .Uploads    {
@@ -85,7 +76,6 @@ img     {
     background-color: #FFE2D0;
     float: right;
 }
-<<<<<<< HEAD
 
 #stick_div  {
    float: left;
@@ -100,5 +90,3 @@ img     {
 .load_more:active, .load_more:hover, .load_more:visited, .load_more:link   {
     text-decoration: none;
 }
-=======
->>>>>>> e043165548e7e01d3586b26d0c10e7748732360e

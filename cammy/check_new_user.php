@@ -29,8 +29,6 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
 
     $validity = $conn->prepare("SELECT user_usrname, user_email FROM users");
     $validity->execute();
-    if ($result = $validity->fetchAll())
-    {
         while($result = $validity->fetchAll())
         {
             $count++;
@@ -48,11 +46,7 @@ if ((!empty($_POST['username'])) && (!empty($_POST['first'])) && (!empty($_POST[
                 }
             }
         }
-    }
-    else
-    {
-        $ifNew = true;
-    }
+    $ifNew = true;
     $conn = NULL;
     if ($ifNew == true)
     {
