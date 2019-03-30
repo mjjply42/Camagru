@@ -26,7 +26,8 @@ else
       $.ajax({
         type: "Post",
         url: "send_email.php",
-        data: "send='yes'",
+        data: "send='yes'"
+              'value': 2,
         success: function() {
           alert("Email Has Been Sent");
         }

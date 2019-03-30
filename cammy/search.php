@@ -151,6 +151,16 @@ function        sendLike()
             }
         }
     });
+    $.ajax(
+    {
+        type: "Post",
+        url: "send_email.php",
+        data:{'image_id': im_id,
+                'value': 2},
+        success: function(data) 
+        {
+        }
+    });
 }
 
 $(".post_comment").submit(function(e) {
@@ -251,6 +261,16 @@ function post_com(event)
         }
     });
     comment.value = '';
+    $.ajax(
+    {
+        type: "Post",
+        url: "send_email.php",
+        data:{'image_id': im_id,
+                'value': 1},
+        success: function(data) 
+        {
+        }
+    });
 }
 </script>
 <div class="footer"></div>

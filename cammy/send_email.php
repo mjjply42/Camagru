@@ -1,31 +1,71 @@
 <?php
 include_once 'database.php';
-
+$im_id = $_POST['image_id'];
+$username = '';
+$email = '';
 try { $conn = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD); }
 
 catch   (PDOException $event) { print "Error!: " . $event->getMessage(). "<br/>";
     die(); }
-$state = $conn->prepare("SELECT profile_info.image_id, profile_info.user_id, users.user_id, users.user_usrname, users.user_email
+$state = $conn->prepare("SELECT profile_info.image_id, users.user_id, users.user_usrname, users.user_email
                             FROM users, profile_info
                             WHERE profile_info.image_id = 6
                             AND users.user_id = profile_info.user_id");
-function    newLike()
+$state->execute();
+while($result = $state->fetchAll())
 {
-
+    foreach($result as $row)
+    {
+        $username = $row['user_usrname'];
+        $email = $row['user_email'];
+    }
 }
 
-function    newComment()
-{
-    
+if ($_POST['value'] == 0)
+    newUser($username, $email);
+else if ($_POST['value'] == 1)
+    newComment($username, $email);
+else
+    newLike($username, $email);
 
-}
-
-function    newUser()
+function    newLike($username, $email)
 {
-    $email = $_COOKIE['email'];
-    $username = $_COOKIE['username'];
     $to      = $email;
-    $e_verify = $_COOKIE['verify'];
+    $subject = 'Notification | New Like On Your Photo!';
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/plain; charset=UTF-8' . "\r\n";
+    $message = '
+    A user has liked one of the photos on your page!
+    
+    ------------------------
+    Username: '.$username.'
+    Email: '.$email.'
+    ------------------------';
+    
+    mail($to, $subject, $message, $headers);
+}
+
+function    newComment($username, $email)
+{
+    $to      = $email;
+    $subject = 'Notification | New Comment On Your Photo';
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/plain; charset=UTF-8' . "\r\n";
+    $message = '
+    A user has commented on one of your photos!
+
+    ------------------------
+    Username: '.$username.'
+    Email: '.$email.'
+    ------------------------';
+    
+    mail($to, $subject, $message, $headers);
+
+}
+
+function    newUser($username, $email)
+{
+    $to      = $email;
     $subject = 'Signup | Verification';
     $headers  = 'MIME-Version: 1.0' . "\r\n";
     $headers .= 'Content-type: text/plain; charset=UTF-8' . "\r\n";
@@ -36,10 +76,7 @@ function    newUser()
     ------------------------
     Username: '.$username.'
     Email: '.$email.'
-    ------------------------
-    
-    Please click this link to activate your account:
-    http://localhost:8888/new_usr_session.php?email='.$email.'&verify='.$e_verify.'';
+    ------------------------';
     
     mail($to, $subject, $message, $headers);
 }
