@@ -41,7 +41,7 @@
 .stickers_ img      {
     width: auto;
     height: 80px;
-    border:1px solid #021a40;
+    
     float: right;
 }
 
@@ -89,4 +89,18 @@ img     {
 
 .load_more:active, .load_more:hover, .load_more:visited, .load_more:link   {
     text-decoration: none;
+}
+
+#deleting input
+{
+    height: 80px;
+    width: auto;
+}
+#trash_div  {
+    float: left;
+}
+
+.image_prev     {
+    height: 100px;
+    width: auto;
 }

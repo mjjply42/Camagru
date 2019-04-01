@@ -41,7 +41,6 @@ if(!empty($_POST['old_u']) && !empty($_POST['new_u']) && ($_POST['old_u'] == $_S
         else
         {
             echo("Old Username is incorrect");
-            //header('Location:  change_username.php');
         }
       }
     }
@@ -51,7 +50,6 @@ if(!empty($_POST['old_u']) && !empty($_POST['new_u']) && ($_POST['old_u'] == $_S
 else
 {
     echo("New or Old Username is incorrect");
-    //header('Location:  change_username.php');
 }
 
 ?>

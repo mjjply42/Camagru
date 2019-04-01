@@ -65,5 +65,5 @@ if (!file_exists("pics_" .$_SESSION['username']. "/pics_alpha_" .$_SESSION['user
     header("Location:   usr_profile.php");
     
 }
-echo("GET FUCKED");
+echo("File currently exists");
 ?>

@@ -65,6 +65,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       <input class="logout btn btn-primary btn-sm" type="submit" value="Logout" name="logout"></input>
     </form>
   </form>
+  <button id="takephoto"  class="btn btn-success" data-toggle="modal" data-target="#snapModal">Take Photo</button>
   <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Update Login
@@ -117,14 +118,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
   </div>
       </form>
   </form>
-  <div class="dropdown">
-  <button class="settings btn btn-primary btn-md dropdown-toggle" id="dropdownMenuButtton" data-toggle="dropdown">Settings</button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="/change_username.php">Change Username</a>
-    <a class="dropdown-item" href="/change_password.php">Change Password</a>
-    <a class="dropdown-item" href="/change_email.php">Change Email</a>
-  </div>
-  </div>
+  <button id="deletephoto"  class="btn btn-danger" data-toggle="modal" data-target="#trashModal">Delete Photo</button>
   <form action="usr_user_search.php" method="POST" autocomplete="off">
         <input type="text" placeholder="Search for User..." class="search_bar" name="search">
         <input type="submit" class="btn btn-primary" value="Search" class="search_but">
@@ -164,8 +158,8 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       <input type="submit" value="submit" id="submit" />
       </form>
       </div>
+       <!--Add Photo Modal-->
       <div class="video-container">
-        <button id="takephoto" data-toggle="modal" data-target="#snapModal">Take Photo</button>
         <div class="modal fade" id="snapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -196,11 +190,36 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
   </div>
 </div>
       </div>
+
+      <!--Delete Photo Modal-->
+      <div class="trash-container">
+        <div class="modal fade" id="trashModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <img class="del_preview" type="image/jpeg" src="" style="display: none;">
+        <h1 class="modal-title" id="trashModalLabel"></h1>
+        <button type="button" class="close" id="trash_close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="trash-modal modal-body">
+        <div id="deleting">
+        </div>
+      </div>
+      <div class="trash-modal-footer">
+        <button type="button" id="remove_" class="btn btn-danger btn-block">Remove From Gallery</button>
+        <!--button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button-->
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
       <script>
       const constraints = {
         video: true
       };
-
+      var modal = document.querySelector("#trashModal");
       const video = document.querySelector('video');
       var start_butt = document.querySelector("#capture");
       var shoot = document.querySelector("#shoot");
@@ -210,13 +229,114 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       var clear_butt = document.querySelector("#clear_image");
       var title = document.querySelector(".modal-title");
       var loading = document.querySelector(".spinner-border");
+      var image_prev = document.querySelector(".del_preview");
       var stick_path = "";
+      var trash_path = "";
+      var trash_close_ = document.querySelector("#trash_close");
       var stickers = document.querySelector(".stickers_");
       var gallery = document.querySelector(".gallery");
+      var delete_butt = document.querySelector("#deletephoto");
+      var remove = document.querySelector("#remove_");
       var media;
       img.style.display = 'none';
       var media;
       img.style.display = 'none';
+
+      
+      trash_close_.onclick = function()
+      {
+        var delete_sec = document.querySelector("#deleting");
+        while(delete_sec.childElementCount >= 1)
+          delete_sec.removeChild(document.querySelector("#trash_div"));
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          var delete_sec = document.querySelector("#deleting");
+          while(delete_sec.childElementCount >= 1)
+            delete_sec.removeChild(document.querySelector("#trash_div"));
+    }
+}
+
+      delete_butt.onclick = function()
+      {
+        $.ajax(
+          {
+            type: "Get",
+            url: "gallery_load.php",
+            data: {"delete" : "true"},
+            dataType: "JSON",
+            success: function(data)
+            {
+              if (data == 0)
+              {
+                var add = document.createElement("img");
+                var input_del = document.createElement("input");
+                input_del.type = "radio";
+                var deleteya = document.querySelector("#deleting");
+                deleteya.appendChild(input_del);
+                deleteya.appendChild(add);
+                deleteya.appendChild(document.createElement("br"));
+                add.src = ("default/no_images.png");
+              }
+              else
+              {
+                data.forEach(function(img_)
+                {
+                  var input_del = document.createElement("input");
+                  var del_div = document.createElement("div");
+                  input_del.type = "image";
+                  del_div.id = 'trash_div';
+                  input_del.className = "trash_"
+                  input_del.name = img_;
+                  input_del.value = img_;
+                  input_del.id = img_;
+
+                  input_del.onclick = function updateSrc() 
+                  { 
+                    var tmp= input_del.src.split("/");
+                    trash_path = "./" + tmp[3] + "/" + tmp[4];
+                    image_prev.src = ("pics_"+ user+ "/" + img_);
+                    image_prev.style.display = "block";
+                  }
+
+                  var delete_ = document.querySelector("#deleting");
+                  delete_.appendChild(del_div);
+                  del_div.appendChild(input_del);
+                  del_div.appendChild(document.createElement("br"));
+                  input_del.src = ("pics_"+ user+ "/" + img_);
+                });
+              }
+            }
+          });
+      }
+      remove.onclick = function()
+      {
+        if (trash_path != '')
+          if(confirm("Are you sure you want to remove the selected photo from your Gallery?"))
+            removePhoto();
+          else
+            alert("Select image to delete!");
+      }
+
+      function removePhoto()
+      {
+        var im_path_spl = trash_path.split("/");
+        var image_name = im_path_spl[2];
+
+        $.ajax(
+        {
+          type: "Post",
+          url: "delete_pic.php",
+          data: { "image_name": image_name,
+                  "path": trash_path},
+          success: function(data)
+          {
+            alert("Photo deleted!");
+            window.location = "usr_profile.php"
+          }
+        });
+      }
+
       clear_butt.onclick = function()
       {
         if (img.style.display != 'none')
@@ -318,6 +438,10 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
                     add.className = "gall_image";
                     gallery.appendChild(add);
                     add.src = ("pics_"+ user+ "/" + img_);
+                    //add.onclick = function delete()
+                    //{
+                    //  
+                    //}
                   });
                   var load = document.createElement("button");
                   load.innerText = "Load More";
@@ -402,8 +526,9 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
           });
       function check()
       {
+        var so_far = 0;
         var img_count = document.querySelector(".gallery").childElementCount - 1;
-        var so_far = img_count;
+        so_far = img_count;
         var images = document.querySelector(".gallery");
         images.removeChild(document.querySelector(".load_more"));
         $.ajax(
@@ -415,19 +540,22 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
                     'offset': so_far},
             success: function(data)
             {
-              data.forEach(function(img_)
+              if(data)
               {
-                var add = document.createElement("img");
-                add.className = "gall_image";
-                gallery.appendChild(add);
-                add.src = ("pics_"+ user+ "/" + img_);
-              });
+                data.forEach(function(img_)
+                {
+                  var add = document.createElement("img");
+                  add.className = "gall_image";
+                  gallery.appendChild(add);
+                  add.src = ("pics_"+ user+ "/" + img_);
+                });
                 var load = document.createElement("button");
                 load.innerText = "Load More";
                 load.type = "button";
                 load.className = "btn btn-link load_more btn-block";
                 load.onclick = check;
                 gallery.appendChild(load);
+              }
             }
           });
       }

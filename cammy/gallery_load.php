@@ -6,8 +6,10 @@ if(!isset($_POST['offset']))
 }
 else
 {
-    $offset = $_POST['offset'];
+    $offset += $_POST['offset'] + 2;
 }
+
+$count = 5;
 $id = intval($_SESSION['id']);
 $DB_HOST = "localhost";
 $DB_USER = "root";
@@ -25,8 +27,10 @@ catch   (PDOException $event) {
     print "Error!: " . $event->getMessage(). "<br/>";
     die();
 }
-
-$test = $conn->prepare("SELECT pic_, image_id, status FROM profile_info WHERE `user_id` = '$id' LIMIT $offset, 1");
+if ($_GET['delete'] != "true")
+    $test = $conn->prepare("SELECT pic_, image_id, status FROM profile_info WHERE `user_id` = '$id' LIMIT $offset, $count");
+else
+    $test = $conn->prepare("SELECT pic_, image_id, status FROM profile_info WHERE `user_id` = '$id'"); 
 $test->execute();
 
 $images = array();
