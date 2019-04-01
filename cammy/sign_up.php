@@ -54,7 +54,6 @@ Password <input type="password" id="pwd" class="form-control" name="password"><b
       var email_id = document.querySelector("#email");
       var mess2 = document.querySelector(".message2");
       var mess3 = document.querySelector(".message3");
-      console.log("gfbiodnk;m");
     $.ajax(
       {
           type: "Post",
@@ -68,7 +67,6 @@ Password <input type="password" id="pwd" class="form-control" name="password"><b
           {
             if (data == 2)
               {
-                console.log("Exisyts");
                 user_id.className += " is-invalid";
                 pass_id.className += " is-invalid";
                 mess2.style.display = 'block';
@@ -81,7 +79,6 @@ Password <input type="password" id="pwd" class="form-control" name="password"><b
               }
             else if (data == 3)
               {
-                console.log("empty field");
                 user_id.className += " is-invalid";
                 pass_id.className += " is-invalid";
                 mess3.style.display = 'block';
@@ -94,7 +91,6 @@ Password <input type="password" id="pwd" class="form-control" name="password"><b
               }
             else
               {
-                console.log("user exists");
                 var eVerify = data;
                 user_id.className += " is-valid";
                 pass_id.className += " is-valid";

@@ -21,5 +21,4 @@ function    createTables($user)
 
     $dummy_table = $conn->prepare("CREATE TABLE ");
 }
-
 ?>

@@ -181,7 +181,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       </div>
       <div class="modal-footer">
         <button id="capture" type="button" class="btn btn-primary">Capture</button>
-        <button id="shoot" type="button" class="btn btn-success">Screenshot</button>
+        <button id="shoot" type="button" class="btn btn-success" disabled="">Screenshot</button>
         <button id="stop" type="button" class="btn btn-danger">Stop</button>
         <button id="save" type="button" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -242,7 +242,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
       var media;
       img.style.display = 'none';
 
-      
       trash_close_.onclick = function()
       {
         var delete_sec = document.querySelector("#deleting");
@@ -403,7 +402,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
 
       function    success(stream)
       {
-        shoot.disabled = false;
         media = video.srcObject = stream;
         title.textContent = "Pick your Sticker!";
       }
@@ -438,10 +436,6 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
                     add.className = "gall_image";
                     gallery.appendChild(add);
                     add.src = ("pics_"+ user+ "/" + img_);
-                    //add.onclick = function delete()
-                    //{
-                    //  
-                    //}
                   });
                   var load = document.createElement("button");
                   load.innerText = "Load More";
@@ -513,6 +507,7 @@ if (!file_exists("pics_".$_SESSION['username']."/profile_img"))
                   { 
                     var tmp= input.src.split("/");
                     stick_path = "./" + tmp[3] + "/" + tmp[4] + "/" + tmp[5];
+                    shoot.disabled = false;
                   }
 
                   var sticker = document.querySelector(".stickers_");

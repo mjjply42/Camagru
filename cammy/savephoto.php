@@ -1,9 +1,4 @@
 <?php
-###THIS STATEMENT RIPS AND COPIES THE IMAGE_ID
-#INSERT INTO id_img_stat (`img_id`)
-##SELECT `image_id`
-##FROM profile_info
-##WHERE pic_ = '$fileName'");
 session_start();
 
 $base = explode(",", $_POST['base_64']);
@@ -22,7 +17,6 @@ $dwi = 200;
 $dest = imagecreatetruecolor($swi, $she);
 imagealphablending($dest, false);
 imagecopyresampled($dest, $alph, 0, 0, 0, 0, $dwi, $dhe, $swi, $she);
-// use imagecopymerge instead and set the copied image opacity to 50
 imagecopy($img, $dest, 0, 0, 0, 0, 200, 200);
 header("Content-type: image/png");
 imagepng($img,"./pics_".$_SESSION['username']."/".$new_image);
