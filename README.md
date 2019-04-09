@@ -76,5 +76,5 @@ From this screen you can make the following changes:
 
 # Creator
 ### Matthew Jones
-###### <a href="github.com/mjjply42">Github</a>
-###### <a href="twitter.com/canthavecowmilk">@canthavecowmilk</a>
+###### <a href="https://www.github.com/mjjply42">Github</a>
+###### <a href="https://www.twitter.com/canthavecowmilk">@canthavecowmilk</a>
