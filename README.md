@@ -3,6 +3,12 @@ A social web Application template for taking, sharing, and liking photographs.
 
 <img src="https://i.ibb.co/MR353Hr/Screen-Shot-2019-04-08-at-8-37-19-PM.png" width="800" />
 
+# Tools Used
+<p>JavaScript</p>
+<p>PHP</p>
+<p>HTML5/CSS</p>
+<p>MAMP</p>
+
 ## Installation
 Using MAMP for Server and MySQL database:
 - Connect to MySQL:
@@ -40,4 +46,30 @@ Using MAMP for Server and MySQL database:
   ```
   php setup.php
   ```
-  That is the final step. You can manually add users and manage the database through the PHPMyAdmin account that is bundled with the MAMP package.
+You can manually add users and manage the database through the PHPMyAdmin account that is bundled with the MAMP package, or setup actual accounts by signing up.
+
+## User Profile
+The User Profile is in its very infancy of design.
+<img src="https://i.ibb.co/ZJ2KSLC/Screen-Shot-2019-04-08-at-10-26-13-PM.png" width="800" />
+
+From this screen you can make the following changes:
+
+  -Update Username
+  
+  -Update Password
+  
+  -Update Email
+  
+  -Take and Delete Photos
+  
+  -Search for other Users and thei Galleries
+  
+  -Upload photos directly to gallery
+  
+  -Upload Stickers to be merged (while taking photos)
+  
+  -Upload User Profile Picture
+  
+  -Go Home
+  
+  <img src="https://media.giphy.com/media/St8lXv7lRoa6g8Q4By/giphy.gif" width="800"/>
