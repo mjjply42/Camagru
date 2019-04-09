@@ -73,3 +73,8 @@ From this screen you can make the following changes:
   -Go Home
   
   <img src="https://media.giphy.com/media/St8lXv7lRoa6g8Q4By/giphy.gif" width="800"/>
+
+# Creator
+### Matthew Jones
+###### <a href="github.com/mjjply42">Github</a>
+###### <a href="twitter.com/canthavecowmilk">@canthavecowmilk</a>
